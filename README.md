@@ -1,6 +1,6 @@
 # Website
 
-Playing around with generative art/creative coding, mostly inspired by these blog posts:
+Playing around with generative art/creative coding, inspired by these blog posts:
 
 * https://varun.ca/noise/
 * https://tylerxhobbs.com/essays/2020/flow-fields
