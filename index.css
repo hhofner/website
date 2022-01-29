@@ -34,6 +34,13 @@ h1 {
     font-size: 100px;
 }
 
+p {
+    border: 3px solid #BF9270;
+    border-radius: 5px;
+    background: #E3B7A0;
+    padding: 1rem;
+}
+
 canvas {
     position: absolute;
 }
