@@ -1,15 +1,19 @@
 import { generateField } from "@romellogoodman/flow-field";
 
-const fields = generateField({
-    count: 1000,
-    margin: 0.0,
-    amplitude: 3,
-    damping: 0.6,
-    height: window.innerWidth,
-    width: window.innerWidth,
-    step: 100,
-    scale: 1.5
-});
+const generate = () => {
+    const params = {
+        count: 1000,
+        margin: 0.0,
+        amplitude: Math.random() * 100,
+        damping: Math.random(),
+        height: window.innerWidth,
+        width: window.innerWidth,
+        scale: Math.random() * 10,
+    }
+    return generateField(params);
+}
+
+const fields = generate();
 
 let fieldCount = 100;
 let lineCount = 1;
@@ -47,19 +51,28 @@ function draw() {
     context.strokeStyle = '#EDCDBB';
 
     if (fieldCount < fields.length) {
-        let line = fields[fieldCount].line;
-        if (lineCount < line.length - 1) {
-            context.beginPath();
-            context.moveTo(...line[lineCount]);
-            context.lineTo(...line[lineCount + 1]);
-            context.stroke();
-            lineCount++;
-            window.requestAnimationFrame(draw);
-        } else {
-            fieldCount++;
-            lineCount = 1;
-            window.requestAnimationFrame(draw);
-        }
+        const [start, ...pts] = fields[fieldCount].line || [];
+
+        context.beginPath();
+        context.moveTo(...start);
+        pts.forEach((pt) => {
+            context.lineTo(...pt);
+        })
+        context.stroke();
+        fieldCount++;
+        window.requestAnimationFrame(draw);
+        // if (lineCount < line.length - 1) {
+        //     context.beginPath();
+        //     context.moveTo(...line[lineCount]);
+        //     context.lineTo(...line[lineCount + 1]);
+        //     context.stroke();
+        //     lineCount++;
+        //     window.requestAnimationFrame(draw);
+        // } else {
+        //     fieldCount++;
+        //     lineCount = 1;
+        //     window.requestAnimationFrame(draw);
+        // }
     }
 }
 
