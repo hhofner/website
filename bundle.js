@@ -1375,33 +1375,64 @@ function masher() {
 
 var t=new e,r=function(i,n,e){var t=i*e,r=n*e;return {minWidth:t,maxWidth:i-t,minHeight:r,maxHeight:n-r}},a=function(e){for(var t=e.count,a=e.height,o=e.margin,h=void 0===o?.1:o,d=e.width,m=(x=e.seed||MersenneTwister19937.autoSeed(),new Random(x)),u=r(d,a,h),l=u.minWidth,v=u.maxWidth,c=u.minHeight,f=u.maxHeight,g=[],p=0;p<t;p++)g.push({x:m.real(l,v),y:m.real(c,f),vx:0,vy:0,line:[]});var x;return g},o=function(i){var n,e,r=i.damping,a=i.lengthOfStep,o=i.particle,h=(e=i.amplitude,t.noise2D(o.x*(n=i.frequency),o.y*n)*e);o.vx+=Math.cos(h)*a,o.vy+=Math.sin(h)*a,o.x+=o.vx,o.y+=o.vy,o.vx*=r,o.vy*=r,o.line.push([o.x,o.y]);},h=function(i){var n=void 0===i?{}:i,e=n.amplitude,t=void 0===e?5:e,h=n.count,d=n.damping,m=void 0===d?.1:d,u=n.height,l=n.margin,v=void 0===l?.1:l,c=n.scale,f=void 0===c?1:c,g=n.width,p=30*f,x=5*f,s=.001/f,y=n.particles||a({count:void 0===h?1e3:h,height:u,margin:v,seed:n.seed,width:g})||[];return null==y||y.forEach(function(i){for(;i.line.length<p;)o({amplitude:t,damping:m,frequency:s,lengthOfStep:x,particle:i});}),null==y||y.forEach(function(i){i.line=i.line.filter(function(i){return function(i,n,e,t,a){var o=r(e,t,a);return i>o.minWidth&&i<o.maxWidth&&n>o.minHeight&&n<o.maxHeight}(i[0],i[1],g,u,v)});}),y};
 
-const dicedOnions = h({count: 500, height: window.innerWidth, width: window.innerWidth, step: 50});
-let dishCount = 0;
-let dish = dicedOnions[dishCount].line;
-let tearCount = 1;
+const fields = h({
+    count: 1000,
+    margin: 0.0,
+    amplitude: 3,
+    damping: 0.6,
+    height: window.innerWidth,
+    width: window.innerWidth,
+    step: 100,
+    scale: 1.5
+});
+
+let fieldCount = 100;
+let lineCount = 1;
 
 function init() {
     window.requestAnimationFrame(draw);
 }
 
+function drawInit() {
+    let context = canvas.getContext("2d");
+
+    // Draw the first 100 lines for a start
+    fields.forEach((field, index) => {
+        if (index > fieldCount) return;
+        const [start, ...pts] = field.line || [];
+        if (!start) return;
+
+        context.beginPath();
+        context.moveTo(...start);
+
+        pts.forEach((pt) => {
+            context.lineTo(...pt);
+        });
+
+        context.lineWidth = 2;
+        context.strokeStyle = '#EDCDBB';
+        context.stroke();
+    });
+
+}
+
 function draw() {
     let context = canvas.getContext("2d");
-    context.lineWidth = 3;
-    context.strokeStyle = "red";
-    // context.clearRect(0,0, 450, 450);
+    context.lineWidth = 2;
+    context.strokeStyle = '#EDCDBB';
 
-    if (tearCount < dish.length - 1) {
-        context.beginPath();
-        context.moveTo(...dish[tearCount - 1]);
-        context.lineTo(...dish[tearCount]);
-        context.stroke();
-        tearCount++;
-        window.requestAnimationFrame(draw);
-    } else {
-        tearCount = 1;
-        dishCount++;
-        if (dishCount < dicedOnions.length - 1) {
-            dish = dicedOnions[dishCount].line;
+    if (fieldCount < fields.length) {
+        let line = fields[fieldCount].line;
+        if (lineCount < line.length - 1) {
+            context.beginPath();
+            context.moveTo(...line[lineCount]);
+            context.lineTo(...line[lineCount + 1]);
+            context.stroke();
+            lineCount++;
+            window.requestAnimationFrame(draw);
+        } else {
+            fieldCount++;
+            lineCount = 1;
             window.requestAnimationFrame(draw);
         }
     }
@@ -1411,5 +1442,6 @@ let canvas = document.getElementById("vinegar");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 if (canvas && canvas.getContext) {
+    drawInit();
     init();
 }

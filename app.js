@@ -1,60 +1,63 @@
-import {generateField} from "@romellogoodman/flow-field";
+import { generateField } from "@romellogoodman/flow-field";
 
-// (function () {
-//     var lastTime = 0;
-//     var vendors = ['ms', 'moz', 'webkit', 'o'];
+const fields = generateField({
+    count: 1000,
+    margin: 0.0,
+    amplitude: 3,
+    damping: 0.6,
+    height: window.innerWidth,
+    width: window.innerWidth,
+    step: 100,
+    scale: 1.5
+});
 
-//     for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-//         window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-//         window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
-//     }
-//
-//     if (!window.requestAnimationFrame) window.requestAnimationFrame = function (callback, element) {
-//         var currTime = new Date().getTime();
-//         var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-//         var id = window.setTimeout(function () {
-//                 callback(currTime + timeToCall);
-//             },
-//             timeToCall);
-//         lastTime = currTime + timeToCall;
-//         return id;
-//     };
-//
-//     if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function (id) {
-//         clearTimeout(id);
-//     };
-// }());
-
-function diceItUpBoy() {
-
-}
-const dicedOnions = generateField({count: 500, height: window.innerWidth, width: window.innerWidth, step: 50});
-let dishCount = 0;
-let dish = dicedOnions[dishCount].line;
-let tearCount = 1;
+let fieldCount = 100;
+let lineCount = 1;
 
 function init() {
     window.requestAnimationFrame(draw);
 }
 
+function drawInit() {
+    let context = canvas.getContext("2d");
+
+    // Draw the first 100 lines for a start
+    fields.forEach((field, index) => {
+        if (index > fieldCount) return;
+        const [start, ...pts] = field.line || [];
+        if (!start) return;
+
+        context.beginPath();
+        context.moveTo(...start);
+
+        pts.forEach((pt) => {
+            context.lineTo(...pt);
+        })
+
+        context.lineWidth = 2;
+        context.strokeStyle = '#EDCDBB';
+        context.stroke();
+    })
+
+}
+
 function draw() {
     let context = canvas.getContext("2d");
-    context.lineWidth = 3;
-    context.strokeStyle = "red";
-    // context.clearRect(0,0, 450, 450);
+    context.lineWidth = 2;
+    context.strokeStyle = '#EDCDBB';
 
-    if (tearCount < dish.length - 1) {
-        context.beginPath();
-        context.moveTo(...dish[tearCount - 1]);
-        context.lineTo(...dish[tearCount]);
-        context.stroke();
-        tearCount++;
-        window.requestAnimationFrame(draw);
-    } else {
-        tearCount = 1;
-        dishCount++;
-        if (dishCount < dicedOnions.length - 1) {
-            dish = dicedOnions[dishCount].line;
+    if (fieldCount < fields.length) {
+        let line = fields[fieldCount].line;
+        if (lineCount < line.length - 1) {
+            context.beginPath();
+            context.moveTo(...line[lineCount]);
+            context.lineTo(...line[lineCount + 1]);
+            context.stroke();
+            lineCount++;
+            window.requestAnimationFrame(draw);
+        } else {
+            fieldCount++;
+            lineCount = 1;
             window.requestAnimationFrame(draw);
         }
     }
@@ -64,5 +67,6 @@ let canvas = document.getElementById("vinegar");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 if (canvas && canvas.getContext) {
+    drawInit();
     init();
 }

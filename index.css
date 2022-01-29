@@ -1,5 +1,22 @@
+html {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 body {
     overflow: hidden;
+    background: #FFEDDB;
+}
+
+@keyframes appearFromCenter {
+    0% {
+        opacity: 0;
+        transform: translateY(-25%);
+    }
+
+    100% {
+        transform: translateY(-30%);
+        opacity: 1;
+    }
 }
 
 .main-title {
@@ -8,10 +25,11 @@ body {
     align-items: center;
     height: 100%;
     justify-content: center;
+    animation: 1.1s ease-out 0s 1 appearFromCenter;
     transform: translateY(-30%);
 }
 
-h4 {
+h1 {
     margin: 0;
     font-size: 100px;
 }
