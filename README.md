@@ -1,4 +1,6 @@
-# Website
+# Personal Website
+
+## What is up with the background?
 
 Playing around with generative art/creative coding, inspired by these blog posts:
 
@@ -9,7 +11,6 @@ and using this amazing library!
 
 * https://github.com/romellogoodman/flow-field.js
 
-some other good stuff:
+some other good stuff I used for this:
 * https://pomax.github.io/bezierinfo/
 * https://rollupjs.org/guide/en/#tutorial
-
