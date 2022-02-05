@@ -4,9 +4,9 @@ const generate = () => {
     const params = {
         count: 500,
         margin: 0.0,
-        amplitude: Math.random() * 3,
-        damping: 0.6,
-        height: window.innerWidth,
+        amplitude: 2,
+        damping: 0.5,
+        height: window.innerHeight,
         width: window.innerWidth,
         scale: 1.7,
     }
@@ -44,7 +44,6 @@ function kickOffDraw() {
             if (fields[fieldCount].line.length > 0) {
                 if (pointCount < fields[fieldCount].line.length - 2) {
                     context.beginPath();
-                    console.log(fields[fieldCount].line[pointCount]);
                     context.moveTo(...fields[fieldCount].line[pointCount]);
                     context.lineTo(...fields[fieldCount].line[pointCount+1]);
                     context.stroke();
@@ -61,19 +60,19 @@ function kickOffDraw() {
             }
         }
     }
-    const fields = generate();
+    let fields = generate();
     let fieldCount = 100;
     let pointCount = 0;
 
     drawInit();
-    window.requestAnimationFrame(draw);
+    return window.requestAnimationFrame(draw);
 }
-
 
 
 let canvas = document.getElementById("vinegar");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+let animation = undefined;
 if (canvas && canvas.getContext) {
-    kickOffDraw();
+    animation = kickOffDraw();
 }
