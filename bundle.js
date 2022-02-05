@@ -1377,83 +1377,78 @@ var t=new e,r=function(i,n,e){var t=i*e,r=n*e;return {minWidth:t,maxWidth:i-t,mi
 
 const generate = () => {
     const params = {
-        count: 1000,
+        count: 500,
         margin: 0.0,
-        amplitude: Math.random() * 100,
-        damping: Math.random(),
+        amplitude: Math.random() * 3,
+        damping: 0.6,
         height: window.innerWidth,
         width: window.innerWidth,
-        scale: Math.random() * 10,
+        scale: 1.7,
     };
     return h(params);
 };
 
-const fields = generate();
+function kickOffDraw() {
+    function drawInit() {
+        let context = canvas.getContext("2d");
 
-let fieldCount = 100;
+        // Draw the first 100 lines for a start
+        fields.forEach((field, index) => {
+            if (index > fieldCount) return;
+            const [start, ...pts] = field.line || [];
+            if (!start) return;
 
-function init() {
+            context.beginPath();
+            context.moveTo(...start);
+
+            pts.forEach((pt) => {
+                context.lineTo(...pt);
+            });
+
+            context.lineWidth = 2;
+            context.strokeStyle = '#EDCDBB';
+            context.stroke();
+        });
+    }
+    function draw() {
+        let context = canvas.getContext("2d");
+        context.lineWidth = 2;
+        context.strokeStyle = '#EDCDBB';
+
+        if (fieldCount < fields.length) {
+            if (fields[fieldCount].line.length > 0) {
+                if (pointCount < fields[fieldCount].line.length - 2) {
+                    context.beginPath();
+                    console.log(fields[fieldCount].line[pointCount]);
+                    context.moveTo(...fields[fieldCount].line[pointCount]);
+                    context.lineTo(...fields[fieldCount].line[pointCount+1]);
+                    context.stroke();
+                    pointCount++;
+                    window.requestAnimationFrame(draw);
+                } else {
+                    fieldCount++;
+                    pointCount = 0;
+                    window.requestAnimationFrame(draw);
+                }
+            } else {
+                fieldCount++;
+                window.requestAnimationFrame(draw);
+            }
+        }
+    }
+    const fields = generate();
+    let fieldCount = 100;
+    let pointCount = 0;
+
+    drawInit();
     window.requestAnimationFrame(draw);
 }
 
-function drawInit() {
-    let context = canvas.getContext("2d");
 
-    // Draw the first 100 lines for a start
-    fields.forEach((field, index) => {
-        if (index > fieldCount) return;
-        const [start, ...pts] = field.line || [];
-        if (!start) return;
-
-        context.beginPath();
-        context.moveTo(...start);
-
-        pts.forEach((pt) => {
-            context.lineTo(...pt);
-        });
-
-        context.lineWidth = 2;
-        context.strokeStyle = '#EDCDBB';
-        context.stroke();
-    });
-
-}
-
-function draw() {
-    let context = canvas.getContext("2d");
-    context.lineWidth = 2;
-    context.strokeStyle = '#EDCDBB';
-
-    if (fieldCount < fields.length) {
-        const [start, ...pts] = fields[fieldCount].line || [];
-
-        context.beginPath();
-        context.moveTo(...start);
-        pts.forEach((pt) => {
-            context.lineTo(...pt);
-        });
-        context.stroke();
-        fieldCount++;
-        window.requestAnimationFrame(draw);
-        // if (lineCount < line.length - 1) {
-        //     context.beginPath();
-        //     context.moveTo(...line[lineCount]);
-        //     context.lineTo(...line[lineCount + 1]);
-        //     context.stroke();
-        //     lineCount++;
-        //     window.requestAnimationFrame(draw);
-        // } else {
-        //     fieldCount++;
-        //     lineCount = 1;
-        //     window.requestAnimationFrame(draw);
-        // }
-    }
-}
 
 let canvas = document.getElementById("vinegar");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 if (canvas && canvas.getContext) {
-    drawInit();
-    init();
+    kickOffDraw();
 }
