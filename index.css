@@ -1,81 +1,94 @@
 html {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-    overflow: hidden;
-    background: #FFEDDB;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  overflow: hidden;
+  background: #ffeddb;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 footer {
-    position: absolute;
-    font-size: 3rem;
-    bottom: 0;
-    transition: 0.3s;
-    cursor: pointer;
+  position: absolute;
+  font-size: 3rem;
+  bottom: 0;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 footer:hover {
-    transform: scale(1.3);
+  transform: scale(1.3);
 }
 
 @keyframes appearFromCenter {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 0.8;
-    }
+  100% {
+    opacity: 0.8;
+  }
 }
 
 .main-title {
-    position: relative;
-    display: flex;
-    gap: 0.5rem;
-    flex-direction: column;
-    text-align: center;
-    animation: 1.1s ease-out 0s 1 appearFromCenter;
+  position: relative;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  text-align: center;
+  animation: 1.1s ease-out 0s 1 appearFromCenter;
 
-    border: 1px solid burlywood;
-    border-radius: 5px;
-    padding: 3rem;
-    background: #FFEDDB;
-    opacity: 0.8;
+  border: 1px solid burlywood;
+  border-radius: 5px;
+  padding: 3rem;
+  background: #ffeddb;
+  opacity: 0.8;
 }
 
 h1 {
-    margin: 0;
-    font-size: 80px;
-    z-index: 1;
+  margin: 0;
+  font-size: 80px;
+  z-index: 1;
 }
 
 a {
-    font-size: 2rem;
-    border: 1px solid #BF9270;
-    border-radius: 5px;
-    padding: 1rem;
+  color: #000000;
+  text-decoration: none;
+  font-size: 2rem;
+  border: 1px solid #bf9270;
+  border-radius: 5px;
+  padding: 1rem;
+
+  min-height: 35px;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #000000;
+  text-decoration: none;
 }
 
 #contact:hover {
-    cursor: pointer;
-    background: #E3B7A0;
+  cursor: pointer;
+  background: #e3b7a0;
 }
 #contact:hover span {
-    display: none;
+  display: none;
 }
 #contact:hover:before {
-    content: "hhofner[at]gmail.com"
+  content: "hhofner[at]gmail.com";
 }
 
-#resume, #blog {
-    text-decoration: line-through;
-    cursor: not-allowed;
+#resume,
+#blog {
+  text-decoration: line-through;
+  cursor: not-allowed;
 }
 
 canvas {
-    position: absolute;
+  position: absolute;
 }
