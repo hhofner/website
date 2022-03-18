@@ -4,10 +4,27 @@ html {
 
 body {
   overflow: hidden;
-  background: #ffeddb;
+  /* Thank you Josh for the awesome work:  */
+  /* https://www.joshwcomeau.com/gradient-generator/ */
+  background-image: linear-gradient(
+    120deg,
+    hsl(305deg 100% 35%) 0%,
+    hsl(308deg 63% 45%) 9%,
+    hsl(310deg 52% 51%) 18%,
+    hsl(313deg 53% 56%) 27%,
+    hsl(316deg 55% 61%) 36%,
+    hsl(320deg 57% 65%) 45%,
+    hsl(324deg 59% 69%) 55%,
+    hsl(328deg 63% 74%) 64%,
+    hsl(334deg 67% 78%) 73%,
+    hsl(340deg 74% 82%) 82%,
+    hsl(349deg 83% 86%) 91%,
+    hsl(0deg 100% 90%) 100%
+  );
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  height: 100%;
 }
 
 footer {
@@ -22,13 +39,13 @@ footer:hover {
   transform: scale(1.3);
 }
 
-@keyframes appearFromCenter {
+@keyframes appearFromTop {
   0% {
-    opacity: 0;
+    transform: translateY(10%);
   }
 
   100% {
-    opacity: 0.8;
+    transform: translateY(25%);
   }
 }
 
@@ -37,14 +54,14 @@ footer:hover {
   display: flex;
   gap: 0.5rem;
   flex-direction: column;
-  text-align: center;
-  animation: 1.1s ease-out 0s 1 appearFromCenter;
+  animation: 0.5s appearFromTop cubic-bezier(0.25, 0.1, 0.41, 1.375);
 
   border: 1px solid burlywood;
   border-radius: 5px;
   padding: 3rem;
   background: #ffeddb;
-  opacity: 0.8;
+  transform: translateY(25%);
+  border: 1px solid #bf9270;
 }
 
 h1 {
@@ -57,11 +74,11 @@ a {
   color: #000000;
   text-decoration: none;
   font-size: 2rem;
-  border: 1px solid #bf9270;
   border-radius: 5px;
   padding: 1rem;
 
   min-height: 35px;
+  width: fit-content;
 }
 
 a:link,
