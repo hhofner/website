@@ -89,19 +89,27 @@ a:active {
   text-decoration: none;
 }
 
+.raise:hover {
+  transform: translateY(5px);
+  transition: all 0.3s;
+}
+
 #contact:hover {
   cursor: pointer;
-  background: #e3b7a0;
 }
-#contact:hover span {
+/* #contact:hover span {
   display: none;
 }
 #contact:hover:before {
   content: "hhofner[at]gmail.com";
+} */
+
+#blog {
+  text-decoration: none;
+  cursor: pointer;
 }
 
-#resume,
-#blog {
+#resume {
   text-decoration: line-through;
   cursor: not-allowed;
 }
