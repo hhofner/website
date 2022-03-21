@@ -59,9 +59,9 @@ footer:hover {
   border: 1px solid burlywood;
   border-radius: 5px;
   padding: 3rem;
-  background: #ffeddb;
+  background: #ffd4d6;
   transform: translateY(25%);
-  border: 1px solid #bf9270;
+  border: 3px solid #d78897;
 }
 
 h1 {
