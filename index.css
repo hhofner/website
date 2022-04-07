@@ -113,7 +113,7 @@ a:active {
 }
 
 #resume {
-  text-decoration: line-through;
+  text-decoration: none;
   cursor: pointer;
 }
 
