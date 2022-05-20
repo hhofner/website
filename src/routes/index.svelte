@@ -1,8 +1,10 @@
-<script context="module" lang="ts">
-	export const prerender = true;
-</script>
-
 <script lang="ts">
+	import Card from '$lib/Card.svelte';
+
+	let flipped = false;
+	const cardToRender: 'about' | 'contact' | undefined = undefined;
+
+	const handleToggle = () => (flipped = !flipped);
 </script>
 
 <svelte:head>
@@ -19,6 +21,27 @@
 			<div class="special">s</div></span
 		>
 	</h1>
+	{#if flipped}
+		<Card handleClick={handleToggle}>
+			<p>
+				I am a motivated software engineer that loves intuitive UIs and those small little things
+				that make applications that much better.
+			</p>
+			<p>I work with the following tech:</p>
+			<ul>
+				<li>React</li>
+				<li>Svelte</li>
+				<li>Python</li>
+				<li>AWS</li>
+			</ul>
+		</Card>
+	{:else}
+		<div class="links">
+			<a on:click={handleToggle}>About</a>
+			<a href="https://blog.hhofner.com">Blog</a>
+			<a>Contact</a>
+		</div>
+	{/if}
 </section>
 
 <style>
@@ -33,6 +56,19 @@
 	h1 {
 		width: 100%;
 		font-size: 5rem;
+	}
+
+	ul,
+	p {
+		font-size: 1.5rem;
+	}
+
+	.links {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex: 1;
 	}
 
 	.name {

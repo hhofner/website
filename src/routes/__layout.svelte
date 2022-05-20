@@ -9,11 +9,7 @@
 	<slot />
 </main>
 
-<footer>
-	<a>About</a>
-	<a>Blog</a>
-	<a>Contact</a>
-</footer>
+<footer>Made with SvelteKit and love.</footer>
 
 <style>
 	main {
