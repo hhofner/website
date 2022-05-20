@@ -37,9 +37,9 @@
 		</Card>
 	{:else}
 		<div class="links">
-			<a on:click={handleToggle}>About</a>
-			<a href="https://blog.hhofner.com">Blog</a>
-			<a>Contact</a>
+			<a style:color="#ba82ae" on:click={handleToggle}>About</a>
+			<a style:color="#9482ba" href="https://blog.hhofner.com">Blog</a>
+			<a style:color="#82baad">Contact</a>
 		</div>
 	{/if}
 </section>
