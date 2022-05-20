@@ -14,5 +14,7 @@
 		min-height: 100px;
 		max-width: 350px;
 		font-family: Arial;
+
+		box-shadow: 0px 3px;
 	}
 </style>
