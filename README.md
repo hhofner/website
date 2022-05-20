@@ -1,17 +1,38 @@
-# Landing Site
+# create-svelte
 
-## What is up with the background?
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-Playing around with generative art/creative coding, inspired by these blog posts:
+## Creating a project
 
-- https://varun.ca/noise/
-- https://tylerxhobbs.com/essays/2020/flow-fields
+If you're seeing this, you've probably already done this step. Congrats!
 
-and using this amazing library!
+```bash
+# create a new project in the current directory
+npm init svelte
 
-- https://github.com/romellogoodman/flow-field.js
+# create a new project in my-app
+npm init svelte my-app
+```
 
-some other good stuff I used for this:
+## Developing
 
-- https://pomax.github.io/bezierinfo/
-- https://rollupjs.org/guide/en/#tutorial
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
