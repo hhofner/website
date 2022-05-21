@@ -9,7 +9,11 @@
 	<slot />
 </main>
 
-<footer>Made with SvelteKit and love.</footer>
+<footer>
+	<div>
+		Made with SvelteKit and love. Font by <a href="https://youssef-habchi.com/">Youssef Habchi</a>
+	</div>
+</footer>
 
 <style>
 	main {
@@ -30,6 +34,13 @@
 		justify-content: center;
 		align-items: center;
 		padding: 40px;
+	}
+
+	footer > div > a {
+		font-size: 1rem;
+		font-family: ReglisseFill;
+		text-decoration: none;
+		color: black;
 	}
 
 	@media (min-width: 480px) {

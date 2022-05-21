@@ -13,7 +13,7 @@
 </svelte:head>
 
 <section>
-	<h1>
+	<h1 display="flex">
 		They call me <span class="name"
 			><div class="humans">H</div>
 			<div class="are">a</div>
@@ -99,10 +99,22 @@
 		transform: rotate(-8deg);
 		animation: 2s ease-in 1.5s infinite alternate move_h;
 	}
+	span {
+		display: block;
+	}
+	h1 {
+		margin-top: 0.2rem;
+		flex-direction: column;
+	}
 
 	@keyframes move_h {
 		to {
 			transform: translateY(-10px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		@keyframes move_h {
 		}
 	}
 </style>
