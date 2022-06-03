@@ -1,10 +1,16 @@
 <script lang="ts">
 	import Card from '$lib/Card.svelte';
+	import { fade } from 'svelte/transition';
 
 	let flipped = false;
 	const cardToRender: 'about' | 'contact' | undefined = undefined;
 
 	const handleToggle = () => (flipped = !flipped);
+	const handleTestToggle = () => (testBool = !testBool);
+
+	const aboutCharacters = Array.from('About');
+	const contactCharacters = Array.from('Contact');
+	const blogCharacters = Array.from('Blog');
 </script>
 
 <svelte:head>
@@ -12,14 +18,14 @@
 	<meta name="description" content="Hans Hofner" />
 </svelte:head>
 
-<section>
-	<h1 display="flex">
-		They call me <span class="name"
-			><div class="humans">H</div>
+<section on:click={handleTestToggle}>
+	<h1>
+		They call me <span class="name">
+			<div class="humans">H</div>
 			<div class="are">a</div>
 			<div class="not">n</div>
-			<div class="special">s</div></span
-		>
+			<div class="special">s</div>
+		</span>
 	</h1>
 	{#if flipped}
 		<Card handleClick={handleToggle}>
@@ -37,9 +43,21 @@
 		</Card>
 	{:else}
 		<div class="links">
-			<a style:color="#ba82ae" on:click={handleToggle}>About</a>
-			<a style:color="#9482ba" href="https://blog.hhofner.com">Blog</a>
-			<a style:color="#82baad">Contact</a>
+			<a style:color="#ba82ae" on:click={handleToggle}>
+				{#each aboutCharacters as character}
+					<span style="--rotate-var: 45deg">{character}</span>
+				{/each}
+			</a>
+			<a style:color="#9482ba" href="https://blog.hhofner.com">
+				{#each blogCharacters as character}
+					<span class="letsGo">{character}</span>
+				{/each}
+			</a>
+			<a style:color="#82baad" class="contact">
+				{#each contactCharacters as character}
+					<span class="letsGo">{character}</span>
+				{/each}
+			</a>
 		</div>
 	{/if}
 </section>
@@ -56,6 +74,25 @@
 	h1 {
 		width: 100%;
 		font-size: 5rem;
+	}
+
+	a {
+		display: flex;
+		transition: letter-spacing 0.1s ease-out, transform 0.1s ease;
+	}
+
+	a:hover {
+		letter-spacing: 0.5rem;
+		transform: translateY(-0.5rem);
+		--rotate-var: 45deg;
+	}
+
+	a > span:hover {
+		transform: rotate(45deg);
+	}
+
+	a > span {
+		transition: transform 0.4s ease;
 	}
 
 	ul,
