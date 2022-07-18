@@ -9,12 +9,6 @@
 	<slot />
 </main>
 
-<footer>
-	<div>
-		Made with SvelteKit and love. Font by <a href="https://youssef-habchi.com/">Youssef Habchi</a>
-	</div>
-</footer>
-
 <style>
 	main {
 		background: rgb(241, 239, 227);
