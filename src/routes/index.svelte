@@ -6,41 +6,58 @@
 <section>
 	<h1>Hans Hofner</h1>
 	<div>
-		<p>
-			Currently re-designing so it doesn't look like I made the website in a few hours. We (just me)
-			apologize for the inconvenience.
-		</p>
-		<br />
-		<p>
-			You can reach me on
-			<a href="https://twitter.com/flexgambit">Twitter</a>
-			or when I'm not doing my work on
-			<a href="https://lichess.org/@/throwawaycompiler">lichess.</a>
-		</p>
+		<h2>About</h2>
+		<p>Web developer looking to make functional and amazing software.</p>
+		<br/>
+		<p>I enjoy working with: React, Svelte, and Phoenix.</p>
+		<br/>
+		<div class="links">
+		<a href="https://blog.hhofner.com">Read my blog</a>
+		<a href="https://github.com/hhofner">Visit my GitHub</a>
+	</div>
+	</div>
+	<div>
+		<!-- TODO:  -->
+		<h3>View my latest game</h3>
+		<iframe src="https://lichess.org/embed/game/1bPuSBTb?theme=auto&bg=auto"
+width=600 height=397 frameborder=0></iframe>
 	</div>
 </section>
 
 <style>
 	section {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		grid-auto-rows: minmax(100px, auto);
+
+		column-gap: 1rem;
+	}
+
+	h1 {
+		grid-column: 1 / 3;
+		grid-row: 1 / 2;
+
+		text-align: left;
+	}
+
+	.links {
 		display: flex;
-		gap: 1rem;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 1;
 	}
 
-	div {
-		background: white;
-		min-height: 150px;
+	@media (max-width: 700px) {
+		section {
+			display: grid;
+			grid-template-columns: 1fr;
+		}
 
-		padding: 1rem;
+		div {
+			margin-bottom: 1rem;
+		}
 
-		font-size: 1.5rem;
-
-		border: 8px solid;
-
-		border-width: 10px;
-		border-image: repeating-radial-gradient(circle at 10px, aqua, red 2px, yellow 4px, pink 2px) 1;
+		h1 {
+			grid-column: 1;
+		}
 	}
+
 </style>

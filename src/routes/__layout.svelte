@@ -32,7 +32,6 @@
 
 	footer > div > a {
 		font-size: 1rem;
-		font-family: ReglisseFill;
 		text-decoration: none;
 		color: black;
 	}
