@@ -1,3 +1,24 @@
+<script>
+    import { onMount } from "svelte";
+    
+    var latestGame = "1bPuSBTb";
+    $: gameSrc = `https://lichess.org/embed/game/${latestGame}?theme=auto&bg=auto`;
+    onMount(async () => {
+       fetch("https://lichess.org/api/user/throwawaycompiler/current-game", {
+           method: "GET",
+           headers: {
+               "Accept": "application/json"
+           },
+       })
+       .then(response=> response.json())
+        .then(data => {
+            if (data.id) {
+                latestGame = data.id
+            }
+        })
+    })
+</script>
+
 <svelte:head>
 	<title>Home</title>
 	<meta name="description" content="Hans Hofner" />
@@ -18,11 +39,12 @@
 	</div>
 	</div>
 	<div>
-		<!-- TODO:  -->
 		<h3>View my latest game</h3>
-		<iframe src="https://lichess.org/embed/game/1bPuSBTb?theme=auto&bg=auto"
-width=600 height=397 frameborder=0></iframe>
+		<iframe src={gameSrc}
+width=600 height=397 frameborder=0 title="throwawaycompilers latest game"></iframe>
 	</div>
+	
+
 </section>
 
 <style>
@@ -58,6 +80,10 @@ width=600 height=397 frameborder=0></iframe>
 
 		h1 {
 			grid-column: 1;
+		}
+
+		iframe {
+			width: 300px;
 		}
 	}
 
