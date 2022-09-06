@@ -1,22 +1,22 @@
 <script>
-    import { onMount } from "svelte";
-    
-    var latestGame = "1bPuSBTb";
-    $: gameSrc = `https://lichess.org/embed/game/${latestGame}?theme=auto&bg=auto`;
-    onMount(async () => {
-       fetch("https://lichess.org/api/user/throwawaycompiler/current-game", {
-           method: "GET",
-           headers: {
-               "Accept": "application/json"
-           },
-       })
-       .then(response=> response.json())
-        .then(data => {
-            if (data.id) {
-                latestGame = data.id
-            }
-        })
-    })
+	import { onMount } from 'svelte';
+
+	var latestGame = '1bPuSBTb';
+	$: gameSrc = `https://lichess.org/embed/game/${latestGame}?theme=auto&bg=auto`;
+	onMount(async () => {
+		fetch('https://lichess.org/api/user/throwawaycompiler/current-game', {
+			method: 'GET',
+			headers: {
+				Accept: 'application/json'
+			}
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.id) {
+					latestGame = data.id;
+				}
+			});
+	});
 </script>
 
 <svelte:head>
@@ -29,22 +29,25 @@
 	<div>
 		<h2>About</h2>
 		<p>Web developer looking to make functional and amazing software.</p>
-		<br/>
+		<br />
 		<p>I enjoy working with: React, Svelte, and Phoenix.</p>
-		<br/>
+		<br />
 		<div class="links">
-		<a href="https://blog.hhofner.com">Read my blog</a>
-		<a href="https://codepen.io/hhofner">View my CodePen</a>
-		<a href="https://github.com/hhofner">Visit my GitHub</a>
-	</div>
+			<a href="https://blog.hhofner.com">Read my blog</a>
+			<a href="https://codepen.io/hhofner">View my CodePen</a>
+			<a href="https://github.com/hhofner">Visit my GitHub</a>
+		</div>
 	</div>
 	<div>
 		<h3>View my latest game</h3>
-		<iframe src={gameSrc}
-width=600 height=397 frameborder=0 title="throwawaycompilers latest game"></iframe>
+		<iframe
+			src={gameSrc}
+			width="600"
+			height="397"
+			frameborder="0"
+			title="throwawaycompilers latest game"
+		/>
 	</div>
-	
-
 </section>
 
 <style>
@@ -61,6 +64,34 @@ width=600 height=397 frameborder=0 title="throwawaycompilers latest game"></ifra
 		grid-row: 1 / 2;
 
 		text-align: left;
+	}
+
+	a {
+		width: fit-content;
+		text-decoration: none;
+		color: inherit;
+
+		border-bottom: 3px solid #dad4d6;
+		transition: all 0.25s linear;
+		position: relative;
+	}
+
+	/* Source: https://codepen.io/thelittleblacksmith/pen/zXNVvY  */
+	a:before {
+		content: '';
+		display: block;
+		width: 100%;
+		height: 3px;
+		background-color: #284b7a;
+		position: absolute;
+		left: 0;
+		bottom: -3px; /* this is to match where the border is */
+		transform-origin: left;
+		transform: scale(0);
+		transition: 0.25s linear;
+	}
+	a:hover:before {
+		transform: scale(1);
 	}
 
 	.links {
@@ -86,5 +117,4 @@ width=600 height=397 frameborder=0 title="throwawaycompilers latest game"></ifra
 			width: 300px;
 		}
 	}
-
 </style>
