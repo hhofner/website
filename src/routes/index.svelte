@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div>
-		<h3>View my latest game</h3>
+		<h3>View my latest <s>blunder</s> game</h3>
 		<iframe
 			src={gameSrc}
 			width="600"
