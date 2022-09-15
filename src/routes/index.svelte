@@ -37,6 +37,11 @@
 			<a href="https://codepen.io/hhofner">View my CodePen</a>
 			<a href="https://github.com/hhofner">Visit my GitHub</a>
 		</div>
+		<br />
+		<h3>Projects</h3>
+		<div class="projects">
+			<a href="https://klose.hhofner.com">Mood tracker</a>
+		</div>
 	</div>
 	<div>
 		<h3>View my latest <s>blunder</s> game</h3>
@@ -94,9 +99,11 @@
 		transform: scale(1);
 	}
 
-	.links {
+	.links,
+	.projects {
 		display: flex;
 		flex-direction: column;
+		gap: 0.3rem;
 	}
 
 	@media (max-width: 700px) {
