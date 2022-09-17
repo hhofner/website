@@ -36,6 +36,7 @@
 			<a href="https://blog.hhofner.com">Read my blog</a>
 			<a href="https://codepen.io/hhofner">View my CodePen</a>
 			<a href="https://github.com/hhofner">Visit my GitHub</a>
+			<a href="/books">View my book reviews</a>
 		</div>
 		<br />
 		<h3>Projects</h3>

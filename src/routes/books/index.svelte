@@ -1,19 +1,16 @@
+<script>
+	import ThreeStars from '../../lib/ThreeStars.svelte';
+</script>
+
 <section>
 	<h1>Book Reviews</h1>
 	<div>
 		<h2>Read</h2>
 		<ul>
-		</ul>
-	</div>
-	<div>
-		<h3>To-Read / In Progress </h3>
-		<ul>
-			<li><a href="/books/prog-liveview">Programming LiveView</a></li>
-			<li><a href="/books/prog-ecto">Programming Ecto</a></li>
+			<li><a href="/books/ruined-by-design">Ruined By Design </a></li>
 		</ul>
 	</div>
 </section>
-
 
 <style>
 	section {
