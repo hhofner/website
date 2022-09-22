@@ -42,6 +42,7 @@
 		<h3>Projects</h3>
 		<div class="projects">
 			<a href="https://klose.hhofner.com">Mood tracker</a>
+			<a href="https://marin.hhofner.com">Todo list</a>
 		</div>
 	</div>
 	<div>
